@@ -1,9 +1,8 @@
 package com.awa.springframework;
 
+import com.awa.springframework.bean.UserService;
 import com.awa.springframework.beans.factory.config.BeanDefinition;
-import com.awa.springframework.beans.factory.config.BeanDefinitionRegistry;
 import com.awa.springframework.beans.factory.support.DefaultListableBeanFactory;
-import com.awa.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 import org.junit.Test;
 
 /**
@@ -21,13 +20,8 @@ public class ApiTest {
         BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
         beanFactory.registerBeanDefinition("userService", beanDefinition);
         //  第一次获取Bean
-        UserService userService = (UserService) beanFactory.getBean("userService");
+        UserService userService = (UserService) beanFactory.getBean("userService", "awalalala");
         userService.query();
-        System.out.println(userService);
-        //  第N次获取Bean
-        UserService singletonUserService = (UserService) beanFactory.getBean("userService");
-        singletonUserService.query();
-        System.out.println(singletonUserService);
     }
 
 }

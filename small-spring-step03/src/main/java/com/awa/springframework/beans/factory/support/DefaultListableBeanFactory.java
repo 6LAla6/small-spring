@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * @Author: awa
- * @Description: TODO
+ * @Description: TODO 核心类 负责Bean定义的注册和获取
  * @DateTime: 2024/9/22 20:25
  **/
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry {
