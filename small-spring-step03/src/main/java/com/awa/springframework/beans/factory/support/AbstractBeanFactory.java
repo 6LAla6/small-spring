@@ -11,7 +11,7 @@ import com.awa.springframework.beans.factory.config.BeanDefinition;
  **/
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
     @Override
-    public Object getBean(String name) throws BeansException {
+    public Object getBean(String name) throws BeansException{
         //  bean已存在直接返回
         Object bean = getSingleton(name);
         if (null != bean) {
