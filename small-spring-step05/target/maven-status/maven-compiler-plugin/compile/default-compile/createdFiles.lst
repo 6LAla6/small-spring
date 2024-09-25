@@ -1,0 +1,15 @@
+com\awa\springframework\beans\factory\config\BeanDefinitionRegistry.class
+com\awa\springframework\beans\factory\support\DefaultSingletonBeanRegistry.class
+com\awa\springframework\beans\factory\config\SingletonBeanRegistry.class
+com\awa\springframework\beans\BeansException.class
+com\awa\springframework\beans\factory\support\SimpleInstantiationStrategy.class
+com\awa\springframework\beans\factory\config\BeanDefinition.class
+com\awa\springframework\beans\PropertyValue.class
+com\awa\springframework\beans\factory\support\CglibSubclassingInstantiationStrategy$1.class
+com\awa\springframework\beans\factory\support\CglibSubclassingInstantiationStrategy.class
+com\awa\springframework\beans\factory\support\DefaultListableBeanFactory.class
+com\awa\springframework\beans\factory\support\InstantiationStrategy.class
+com\awa\springframework\beans\PropertyValues.class
+com\awa\springframework\beans\factory\BeanFactory.class
+com\awa\springframework\beans\factory\support\AbstractBeanFactory.class
+com\awa\springframework\beans\factory\support\AbstractAutowireCapableBeanFactory.class
