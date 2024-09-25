@@ -7,14 +7,17 @@ package com.awa.springframework.bean;
  **/
 public class UserService {
 
+    private String id;
     private String name;
+    private static UserDao userDao;
 
-    UserService(String name) {
+    UserService(String name, String id) {
         this.name = name;
+        this.id = id;
     }
 
     public void query() {
-        System.out.println("查询用户信息......" + name);
+        System.out.println("查询用户信息......" + name + " " +userDao.queryPhoneName(id));
     }
 
     @Override
