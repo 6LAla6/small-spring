@@ -14,4 +14,7 @@ public interface BeanFactory {
     //  注入有构造器的Class
     Object getBean(String name, Object... args) throws BeansException;
 
+    //  按照类型获取Bean
+    <T> T getBean(String name, Class<T> requiredType) throws BeansException;
+
 }

@@ -12,12 +12,12 @@ public class UserDao {
     private static Map<String, String> hashMap = new HashMap<>();
 
     static {
-        hashMap.put("01", "小米");
-        hashMap.put("02", "华为");
-        hashMap.put("03", "三星");
+        hashMap.put("01", "awa");
+        hashMap.put("02", "周曦");
+        hashMap.put("03", "杨静");
     }
 
-    public String queryPhoneName(String id) {
+    public String queryUserName(String id) {
         return hashMap.get(id);
     }
 
