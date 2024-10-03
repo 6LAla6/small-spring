@@ -3,13 +3,21 @@ package com.awa.springframework.beans.factory.support;
 import com.awa.springframework.beans.BeansException;
 import com.awa.springframework.beans.factory.BeanFactory;
 import com.awa.springframework.beans.factory.config.BeanDefinition;
+import com.awa.springframework.beans.factory.config.BeanPostProcessor;
+import com.awa.springframework.beans.factory.config.ConfigurableBeanFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author: awa
  * @Description: TODO 实现获取单例Bean
  * @DateTime: 2024/9/22 18:25
  **/
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+
+    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
+
     @Override
     public Object getBean(String name) throws BeansException{
         return doGetBean(name, null);
@@ -40,5 +48,14 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     protected abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException;
 
+    @Override
+    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
+        this.beanPostProcessors.remove(beanPostProcessor);
+        this.beanPostProcessors.add(beanPostProcessor);
+    }
+
+    public List<BeanPostProcessor> getBeanPostProcessors() {
+        return this.beanPostProcessors;
+    }
 
 }
