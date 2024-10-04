@@ -1,5 +1,7 @@
 package com.awa.springframework.bean;
 
+import com.awa.springframework.beans.factory.DisposableBean;
+import com.awa.springframework.beans.factory.InitializingBean;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import jdk.nashorn.internal.objects.annotations.Setter;
 
@@ -8,7 +10,7 @@ import jdk.nashorn.internal.objects.annotations.Setter;
  * @Description: TODO
  * @DateTime: 2024/9/22 20:43
  **/
-public class UserService {
+public class UserService implements InitializingBean, DisposableBean {
 
     private String uId;
     private String company;
@@ -50,4 +52,15 @@ public class UserService {
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("执行：UserService.afterPropertiesSet");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("执行：UserService.destroy");
+    }
+
 }
