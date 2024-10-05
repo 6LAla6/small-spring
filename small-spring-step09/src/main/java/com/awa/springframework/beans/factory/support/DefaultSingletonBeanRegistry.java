@@ -5,8 +5,10 @@ import com.awa.springframework.beans.factory.DisposableBean;
 import com.awa.springframework.beans.factory.config.SingletonBeanRegistry;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author: awa
@@ -15,17 +17,23 @@ import java.util.Set;
  **/
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
-    private Map<String, Object> singletonObjectMap = new HashMap<>();
+    /**
+     * Internal marker for a null singleton object:
+     * used as marker value for concurrent Maps (which don't support null values).
+     */
+    protected static final Object NULL_OBJECT = new Object();
 
-    private final Map<String, DisposableBean> disposableBeans = new HashMap<>();
+    private Map<String, Object> singletonObjects = new ConcurrentHashMap<>();
+
+    private final Map<String, DisposableBean> disposableBeans = new LinkedHashMap<>();
 
     @Override
-    public Object getSingleton(String name) {
-        return singletonObjectMap.get(name);
+    public Object getSingleton(String beanName) {
+        return singletonObjects.get(beanName);
     }
 
     protected void addSingleton(String beanName, Object singletonObject) {
-        singletonObjectMap.put(beanName, singletonObject);
+        singletonObjects.put(beanName, singletonObject);
     }
 
     public void registerDisposableBean(String beanName, DisposableBean bean) {
