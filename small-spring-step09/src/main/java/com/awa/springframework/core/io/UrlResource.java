@@ -1,0 +1,39 @@
+package com.awa.springframework.core.io;
+
+import cn.hutool.core.lang.Assert;
+import jdk.nashorn.api.scripting.URLReader;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+
+/**
+ * @Author: awa
+ * @Description: TODO 通过Http读取云服务的文件
+ * @DateTime: 2024/9/26 19:56
+ **/
+public class UrlResource implements Resource{
+
+    private URL url;
+
+    public UrlResource(URL url) {
+        Assert.notNull(url, "url must not be null");
+        this.url = url;
+    }
+
+    @Override
+    public InputStream getInputStream() throws IOException {
+        URLConnection conn = this.url.openConnection();
+        try {
+            return conn.getInputStream();
+        } catch (IOException exception) {
+            if (conn instanceof HttpURLConnection) {
+                ((HttpURLConnection) conn).disconnect();
+            }
+            throw exception;
+        }
+    }
+
+}
